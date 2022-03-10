@@ -1,4 +1,4 @@
-
+from time import sleep
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters, CallbackQueryHandler
 with open('names.txt', 'r',encoding='utf-8') as f:
@@ -6,6 +6,9 @@ with open('names.txt', 'r',encoding='utf-8') as f:
 with open('indexes.txt', 'r') as f:
     indexes = f.read().split('\n')
 indexes = [int(i) for i in indexes]
+
+used=False
+
 def find_name(u_name):
     #u_name = input('enter your name in hebrew: ')
     found = False
@@ -33,16 +36,21 @@ def find_name(u_name):
 
 def reply(update, context):
     """Send to the user the most recommended paths according to his query"""
-
-    user_input = update.message.text
-    output,status = find_name(user_input)
-    if status:
-        update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
-        update.message.reply_text('הגמד שלך הואאאאא היאאאא הםםםםם')
-        update.message.reply_text(output)
-    else:
-        update.message.reply_text(output)
-    update.message.reply_text('תרצה לחפש עוד שם?')   
+    if not used:
+        user_input = update.message.text
+        output,status = find_name(user_input)
+        if status:
+            from time import sleep
+            
+            update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
+            time.sleep(5)
+            update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
+            time.sleep(3)
+            update.message.reply_text('הגמד שלך הואאאאא היאאאא הםםםםם')
+            update.message.reply_text(output)
+            used=True
+        else:
+            update.message.reply_text(output)
         # dp = updater.dispatcher
         # dp.add_handler(MessageHandler(Filters.text, reply))
     # keyboard = []

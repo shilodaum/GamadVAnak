@@ -37,6 +37,8 @@ def reply(update, context):
     user_input = update.message.text
     output,status = find_name(user_input)
     if status:
+        update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
+        update.message.reply_text('הגמד שלך הואאאאא היאאאא הםםםםם')
         update.message.reply_text(output)
     else:
         update.message.reply_text(output)

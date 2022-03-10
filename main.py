@@ -40,8 +40,9 @@ def reply(update, context):
         update.message.reply_text(output)
     else:
         update.message.reply_text(output)
-        dp = updater.dispatcher
-        dp.add_handler(MessageHandler(Filters.text, reply))
+    update.message.reply_text('תרצה לחפש עוד שם?')   
+        # dp = updater.dispatcher
+        # dp.add_handler(MessageHandler(Filters.text, reply))
     # keyboard = []
     # for i in range(10):
 

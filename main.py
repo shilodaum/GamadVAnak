@@ -1,4 +1,4 @@
-from time import sleep
+import time
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters, CallbackQueryHandler
 with open('names.txt', 'r',encoding='utf-8') as f:
@@ -6,8 +6,6 @@ with open('names.txt', 'r',encoding='utf-8') as f:
 with open('indexes.txt', 'r') as f:
     indexes = f.read().split('\n')
 indexes = [int(i) for i in indexes]
-
-used=False
 
 def find_name(u_name):
     #u_name = input('enter your name in hebrew: ')
@@ -36,21 +34,23 @@ def find_name(u_name):
 
 def reply(update, context):
     """Send to the user the most recommended paths according to his query"""
-    if not used:
-        user_input = update.message.text
-        output,status = find_name(user_input)
-        if status:
-            from time import sleep
-            
-            update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
-            time.sleep(5)
-            update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
-            time.sleep(3)
-            update.message.reply_text('הגמד שלך הואאאאא היאאאא הםםםםם')
-            update.message.reply_text(output)
-            used=True
-        else:
-            update.message.reply_text(output)
+    user_input = update.message.text
+    output,status = find_name(user_input)
+    if status:
+        from time import sleep
+        
+        update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
+        time.sleep(3)
+        update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
+        time.sleep(2)
+        update.message.reply_text('🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁')
+        time.sleep(2)
+        update.message.reply_text('הגמד שלך הואאאאא היאאאא הםםםםם')
+        time.sleep(3)
+        update.message.reply_text(output)
+        a=True
+    else:
+        update.message.reply_text(output)
         # dp = updater.dispatcher
         # dp.add_handler(MessageHandler(Filters.text, reply))
     # keyboard = []
@@ -77,6 +77,7 @@ def start(update: Update, context: CallbackContext) -> None:
 
 
 # bot handling
+
 updater = Updater("5101989049:AAEprzfylIDpjo2WGTnUj98mel1xcF5tTAU")
 print('created updater')
 updater.dispatcher.add_handler(CommandHandler('start', start))

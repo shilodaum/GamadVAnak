@@ -61,8 +61,7 @@ def start(update: Update, context: CallbackContext) -> None:
     start the discussion with the bot
     """
     # start message and image
-    update.message.reply_text('מה שמך?')
-
+    update.message.reply_text('כתוב את שמך כדי לגלות מי הגמד שלך')
     dp = updater.dispatcher
     dp.add_handler(MessageHandler(Filters.text, reply))
 

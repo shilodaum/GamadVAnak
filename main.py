@@ -78,7 +78,7 @@ def start(update: Update, context: CallbackContext) -> None:
 
 
 # bot handling
-bot_key=os.environ.get('bot_key')
+bot_key=os.environ.get('BOT_KEY')
 updater = Updater(bot_key)
 print('created updater')
 updater.dispatcher.add_handler(CommandHandler('start', start))

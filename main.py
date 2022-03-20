@@ -1,4 +1,5 @@
 import time
+import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters, CallbackQueryHandler
 with open('names.txt', 'r',encoding='utf-8') as f:
@@ -77,8 +78,8 @@ def start(update: Update, context: CallbackContext) -> None:
 
 
 # bot handling
-
-updater = Updater("5101989049:AAEprzfylIDpjo2WGTnUj98mel1xcF5tTAU")
+bot_key=os.environ.get('bot_key')
+updater = Updater(bot_key)
 print('created updater')
 updater.dispatcher.add_handler(CommandHandler('start', start))
 print('strat command')
